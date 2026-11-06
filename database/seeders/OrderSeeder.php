@@ -19,11 +19,6 @@ class OrderSeeder extends Seeder
             ->count(10)
             ->for(Customer::factory())
             ->create();
-            
-        Order::factory()
-        ->count(3)
-        ->for(Customer::factory())
-        ->has(Payment::factory()->count(3))
-        ->create();
+        Order::factory()->order_with_payments(6)->create();
     }
 }

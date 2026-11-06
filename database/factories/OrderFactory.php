@@ -4,6 +4,7 @@ namespace Database\Factories;
 
 use App\Models\Customer;
 use App\Models\Order;
+use App\Models\Payment;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -28,8 +29,9 @@ class OrderFactory extends Factory
             'customer_id' => Customer::factory(),
         ];
     }
-     /**
-     * Indicate that the model's email address should be unverified.
-     */
+     
+    public function order_with_payments(int $nombre = 3):static{
+        return $this->has(Payment::factory()->count($nombre));
+    }
    
 }

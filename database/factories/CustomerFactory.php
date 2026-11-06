@@ -3,6 +3,7 @@
 namespace Database\Factories;
 
 use App\Models\Customer;
+use App\Models\Order;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -26,9 +27,9 @@ class CustomerFactory extends Factory
         ];
     }
 
-     /**
-     * Indicate that the model's email address should be unverified.
-     */
+     public function customer_with_orders(int $nombre = 4):static{
+        return $this->has(Order::factory()->count($nombre));
+     }
    
 
 }

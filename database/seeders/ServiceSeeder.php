@@ -14,11 +14,6 @@ class ServiceSeeder extends Seeder
     public function run(): void
     {
         Service::factory(10)->create();
-        
-        Service::factory()
-        ->count(3)
-        ->hasAttached(Item::factory()->count(3),
-        fn()=>['prix_applique'=> fake()->numberBetween(100,10000)])
-        ->create();
+        Service::factory()->services_with_items(3)->create();
     }
 }

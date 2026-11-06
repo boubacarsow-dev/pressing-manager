@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\Item;
 use App\Models\Service;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
@@ -24,9 +25,10 @@ class ServiceFactory extends Factory
             'actif' => fake()->boolean(70)
         ];
     }
-     /**
-     * Indicate that the model's email address should be unverified.
-     */
     
+    public function services_with_items(int $nombre =4):static{
+        return $this->hasAttached(Item::factory()->count($nombre),
+    fn() => ['prix_applique' =>fake()->numberBetween(1000,5000)]);
+    }
 
 }
