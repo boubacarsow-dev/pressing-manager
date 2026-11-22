@@ -1,2 +1,25 @@
 @import 'bootstrap/dist/css/bootstrap.min.css';
 @import 'bootstrap-icons/font/bootstrap-icons.css';
+
+:root {
+    --pressing-teal: #15848E;
+    --pressing-violet: #3B182D;
+    --pressing-rose: #BD798C;
+    --pressing-walnut: #532905;
+    --autre:#cdc5b4;
+}
+
+body {
+    background-color: #f8f9fa;
+    color: var(--pressing-walnut);
+}
+
+.bg-pressing-teal { background-color: var(--pressing-teal) !important; color: white; }
+.bg-pressing-violet { background-color: var(--pressing-violet) !important; color: white; }
+.bg-pressing-rose { background-color: var(--pressing-rose) !important; color: white; }
+
+.text-pressing-teal { color: var(--pressing-teal) !important; }
+.text-pressing-violet { color: var(--pressing-violet) !important; }
+.text-pressing-walnut { color: var(--pressing-walnut) !important; }
+.text-pressing-rose { color: var(--pressing-rose) !important; }
+.border-pressing-teal { border-color: var(--pressing-teal) !important; }

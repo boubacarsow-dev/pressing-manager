@@ -38,7 +38,12 @@ class CustomerController extends Controller
             return view('customers.edit', compact('customer'));
         }
     public function show(Customer $customer):View{
-        $customer->load('orders');
+        $customer->load('orders.items');
         return view('customers.show', ['customer' =>$customer]);
+    }
+
+    public function destroy(Customer $customer){
+        $customer->delete();
+        return redirect()->route('customers.index')->with('success','Client supprime avec success');
     }
 }

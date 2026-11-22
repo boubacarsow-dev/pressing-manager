@@ -20,4 +20,12 @@ class Order extends Model
     public function payments():HasMany{
         return $this->hasMany(Payment::class);
     }
+
+     public function orderItems(): HasMany{
+    return $this->hasMany(OrderItem::class);
+     }
+
+    public function orderIsPaid():bool{
+        return $this->payments->exists();
+    }
 }
