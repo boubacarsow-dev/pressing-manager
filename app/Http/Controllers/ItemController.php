@@ -14,13 +14,13 @@ class ItemController extends Controller
     public function index(): View
     {
         $items = Item::with('services')->get();
-        return view('p_items.index', compact('items'));
+        return view('items.index', compact('items'));
     }
 
     public function create(): View
     {
         $services = Service::where('actif', true)->get();
-        return view('p_items.create', compact('services'));
+        return view('items.create', compact('services'));
     }
 
     public function store(ItemFormRequest $request): RedirectResponse
@@ -49,7 +49,7 @@ class ItemController extends Controller
             ->orWhereIn('id', $item->services->pluck('id'))
             ->get();
 
-        return view('p_items.edit', compact('item', 'services'));
+        return view('items.edit', compact('item', 'services'));
     }
 
     public function update(ItemFormRequest $request, Item $item): RedirectResponse

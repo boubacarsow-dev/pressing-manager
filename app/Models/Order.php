@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
-#[Fillable(['ref','livraison_prev', 'date_depot','date_recup','statut','montant_total'])]
+#[Fillable(['ref','livraison_prev', 'date_depot','date_recup','statut','montant_total','customer_id'])]
 class Order extends Model
 {
     use HasFactory;
@@ -26,6 +26,6 @@ class Order extends Model
      }
 
     public function orderIsPaid():bool{
-        return $this->payments->exists();
+        return $this->payments->sum('montant') >= $this->montant_total;
     }
 }

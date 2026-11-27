@@ -20,7 +20,7 @@ class OrderController extends Controller
             ->latest()
             ->get();
 
-        return view('p_orders.index', compact('orders'));
+        return view('orders.index', compact('orders'));
     }
 
     public function create(): View
@@ -31,7 +31,7 @@ class OrderController extends Controller
             ->with(['services' => fn ($query) => $query->where('actif', true)])
             ->get();
 
-        return view('p_orders.create', compact('customers', 'items'));
+        return view('orders.create', compact('customers', 'items'));
     }
 
     public function store(OrderRequest $request): RedirectResponse
@@ -91,7 +91,7 @@ class OrderController extends Controller
             'payments',
         ]);
 
-        return view('p_orders.show', compact('order'));
+        return view('orders.show', compact('order'));
     }
 
     public function edit(Order $order): View|RedirectResponse
@@ -109,7 +109,7 @@ class OrderController extends Controller
             ->with(['services' => fn ($query) => $query->where('actif', true)])
             ->get();
 
-        return view('p_orders.edit', compact('order', 'customers', 'items'));
+        return view('orders.edit', compact('order', 'customers', 'items'));
     }
 
     public function update(OrderRequest $request, Order $order): RedirectResponse
