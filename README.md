@@ -1,58 +1,149 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# Pressing Manager
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+Application web de gestion interne pour un pressing, développée avec Laravel et Bootstrap 5. Elle permet de gérer le fichier clients, le catalogue des vêtements et des prestations, l'enregistrement des commandes multi-lignes ainsi que le suivi des règlements.
 
-## About Laravel
+---
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+## Stack technique
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+![PHP](https://img.shields.io/badge/PHP_8.3-777BB4?style=for-the-badge&logo=php&logoColor=white)
+![Laravel](https://img.shields.io/badge/Laravel_13-FF2D20?style=for-the-badge&logo=laravel&logoColor=white)
+![MySQL](https://img.shields.io/badge/MySQL-4479A1?style=for-the-badge&logo=mysql&logoColor=white)
+![Bootstrap](https://img.shields.io/badge/Bootstrap_5-7952B3?style=for-the-badge&logo=bootstrap&logoColor=white)
+![Vite](https://img.shields.io/badge/Vite-646CFF?style=for-the-badge&logo=vite&logoColor=white)
+![Composer](https://img.shields.io/badge/Composer-885630?style=for-the-badge&logo=composer&logoColor=white)
+![NPM](https://img.shields.io/badge/NPM-CB3837?style=for-the-badge&logo=npm&logoColor=white)
+![Git](https://img.shields.io/badge/Git_Flow-F05032?style=for-the-badge&logo=git&logoColor=white)
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+---
 
-## Learning Laravel
+## Aperçu de l'interface
+c
+### 1. Gestion des clients
+Liste des clients enregistrés avec recherche par nom ou numéro de téléphone et accès rapide aux actions d'édition.
+![Gestion des clients](docs/screenshots/01-customers.png)
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+### 2. Catalogue des vêtements
+Référentiel des types d'articles pris en charge avec affichage des prestations associées et de leurs tarifs appliqués.
+![Catalogue des vêtements](docs/screenshots/02-items.png)
 
-In addition, [Laracasts](https://laracasts.com) contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+### 3. Ajout d'un vêtement et tarification personnalisée
+Association d'un article aux prestations disponibles avec possibilité d'appliquer un tarif spécifique par vêtement.
+![Ajout d'un vêtement](docs/screenshots/03-item-create.png)
 
-You can also watch bite-sized lessons with real-world projects on [Laravel Learn](https://laravel.com/learn), where you will be guided through building a Laravel application from scratch while learning PHP fundamentals.
+### 4. Catalogue des prestations et tarifs
+Gestion des services proposés (lavage, repassage, nettoyage à sec) avec tarification unitaire en FCFA et activation ou désactivation des offres.
+![Gestion des services](docs/screenshots/04-services.png)
 
-## Agentic Development
+### 5. Ajout d'une prestation
+Formulaire de création d'un service avec définition de son tarif de base, sa description et son état d'activation.
+![Ajout d'un service](docs/screenshots/05-service-create.png)
 
-Laravel's predictable structure and conventions make it ideal for AI coding agents like Claude Code, Cursor, and GitHub Copilot. Install [Laravel Boost](https://laravel.com/docs/ai) to supercharge your AI workflow:
+### 6. Création d'une commande
+Formulaire d'enregistrement d'un dépôt associant un client, les dates de dépôt et de livraison prévue, ainsi que les lignes d'articles et prestations.
+![Création d'une commande](docs/screenshots/06-order-create.png)
 
-```bash
-composer require laravel/boost --dev
+### 7. Détail d'une commande et bilan financier
+Vue récapitulative affichant les informations du client, le détail des lignes commandées, le calcul du montant total, les versements déjà effectués et le reste à payer.
+![Détail d'une commande](docs/screenshots/07-order-show.png)
 
-php artisan boost:install
-```
+### 8. Tableau de gestion des commandes
+Vue d'ensemble des commandes avec suivi de l'état de paiement, avancement du traitement et actions rapides.
+![Gestion des commandes](docs/screenshots/08-orders-index.png)
 
-Boost provides your agent 15+ tools and skills that help agents build Laravel applications while following best practices.
+---
 
-## Contributing
+## Fonctionnalités
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+* **Clients :** création, consultation, modification, recherche et suppression des fiches clients.
+* **Vêtements et prestations :** administration du catalogue d'articles et des services associés avec gestion de l'état actif ou inactif.
+* **Commandes :** génération automatique d'une référence unique (`CMD-XXXXXX`), attribution des dates de dépôt et de livraison prévue, calcul du montant total et suivi de l'avancement (`reçue`, `en traitement`, `prête`, `récupérée`).
+* **Suivi des paiements :** affichage du bilan financier par commande (total, montant réglé, reste à payer) et enregistrement des encaissements.
 
-## Code of Conduct
+---
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+## Ce que j'ai appris (Laravel by doing)
 
-## Security Vulnerabilities
+Ce projet m'a permis d'acquérir une compréhension concrète du framework Laravel en construisant une application de bout en bout :
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+* **Migrations :** concevoir, versionner et faire évoluer un schéma de base de données relationnelle avec contraintes de clés étrangères.
+* **Modèles Eloquent :** manipuler les relations entre entités (`hasMany`, `belongsTo`, table pivot avec attributs supplémentaires) et sécuriser les écritures via le Mass Assignment (`$fillable`).
+* **Contrôleurs :** structurer la logique applicative autour des opérations CRUD et sécuriser les opérations critiques à l'aide de transactions SQL (`DB::transaction`).
+* **Validation avec Form Requests :** isoler les règles de validation, les autorisations et les messages d'erreur personnalisés hors des contrôleurs pour garder un code propre et maintenable.
+* **Factories et Seeders :** comprendre leur utilité pour générer rapidement des jeux de données réalistes et tester les cas limites sans saisie manuelle répétitive.
+* **Moteur de templates Blade :** structurer les vues autour d'un layout principal et de composants réutilisables (`<x-base>`, `<x-navigation>`).
 
-## License
+---
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+## Architecture et choix techniques
+
+* **Architecture MVC :** séparation claire entre les contrôleurs de ressources (`CustomerController`, `ItemController`, `ServiceController`, `OrderController`, `OrderPaymentController`), les modèles Eloquent et les vues Blade.
+* **Historisation des tarifs :** la table `order_items` enregistre le prix unitaire appliqué au moment de la commande. Une modification ultérieure des tarifs du catalogue n'altère pas l'historique des commandes passées.
+* **Identité visuelle :** intégration sous Bootstrap 5 avec une charte personnalisée (Teal `#15848E` et Violet `#3B182D`) et un logo vectoriel intégré.
+
+---
+
+## Modèle de données
+
+L'application s'appuie sur 6 tables principales :
+
+* `customers` : informations d'identification et de contact des clients.
+* `items` : types de vêtements traités.
+* `services` : prestations proposées et tarifs de référence.
+* `orders` : commandes rattachées à un client, avec référence, dates, statut et montant total.
+* `order_items` : lignes de commande liant une commande, un vêtement et un service avec quantité et prix unitaire figé.
+* `payments` : versements rattachés à une commande.
+
+---
+
+## Installation en local
+
+1. **Cloner le dépôt et accéder au dossier :**
+   ```bash
+   git clone [https://github.com/boubacarsow-dev/pressing-manager.git](https://github.com/boubacarsow-dev/pressing-manager.git)
+   cd pressing-manager
+   ```
+
+2. **Installer les dépendances PHP et frontend :**
+   ```bash
+   composer install
+   npm install
+   ```
+
+3. **Configurer l'environnement :**
+   ```bash
+   cp .env.example .env
+   php artisan key:generate
+   ```
+   Renseigner les accès MySQL dans le fichier `.env` :
+   ```env
+   DB_CONNECTION=mysql
+   DB_HOST=127.0.0.1
+   DB_PORT=3306
+   DB_DATABASE=pressing_db
+   DB_USERNAME=root
+   DB_PASSWORD=
+   ```
+
+4. **Exécuter les migrations et générer les données de test :**
+   ```bash
+   php artisan migrate --seed
+   ```
+
+5. **Compiler les assets et démarrer le serveur :**
+   ```bash
+   npm run build
+   php artisan serve
+   ```
+   L'application est accessible sur `http://127.0.0.1:8000`.
+
+---
+
+## Workflow Git et évolutions prévues (v1.1)
+
+Le développement suit une organisation par branches : les fonctionnalités sont développées sur des branches dédiées (`feature/*`), intégrées sur `develop`, puis publiées sur `main`.
+
+Prochaines améliorations prévues pour la version 1.1 :
+* Prise en charge complète des acomptes partiels dans `StorePaymentRequest` et calcul du statut soldé basé sur le cumul des versements.
+* Blocage du passage au statut `récupérée` tant que le reste à payer est supérieur à zéro.
+* Ajout et suppression dynamique de lignes d'articles en JavaScript sur le formulaire de création de commande.
